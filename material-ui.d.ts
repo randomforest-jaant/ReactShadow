@@ -8,14 +8,13 @@ declare module 'react-shadow/material-ui' {
         ssr?: boolean;
         children?: React.ReactNode;
     }
-
-    type Root = {
-        [name: string]: React.ComponentType<
-            React.HTMLProps<HTMLElement> & IProps
-        >;
+    
+    type Root<K extends keyof JSX.IntrinsicElements> = {
+        [K in keyof JSX.IntrinsicElements]: React.ComponentPropsWithRef<K & IProps>;
     };
-
-    const ReactShadowRoot: Root;
+    
+    
+    const ReactShadowRoot: Root<any>;
 
     export default ReactShadowRoot;
 }
